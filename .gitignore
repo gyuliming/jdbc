@@ -27,3 +27,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Local Config ###
+src/Util/dbinfo.properties

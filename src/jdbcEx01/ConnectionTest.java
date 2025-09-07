@@ -15,7 +15,7 @@ public class ConnectionTest {
             System.out.println("Driver loaded failed");
         }
 
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookmarketdb?serverTimezone=Asia/Seoul", "root", "Songkl123!")) {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookmarketdb?serverTimezone=Asia/Seoul", "root", "mysql1234")) {
             System.out.println("AutoCommit 상태: " + con.getAutoCommit());
             con.setAutoCommit(true);
             Statement stmt = con.createStatement();

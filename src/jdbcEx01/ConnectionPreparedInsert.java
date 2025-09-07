@@ -10,7 +10,7 @@ public class ConnectionPreparedInsert {
         String driverName = "com.mysql.cj.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/bookmarketdb?serverTimezone=Asia/Seoul";
         String user = "root";
-        String password = "Songkl123!";
+        String password = "mysql1234";
 
         try {
             Class.forName(driverName);
