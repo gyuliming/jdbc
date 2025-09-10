@@ -29,4 +29,5 @@ bin/
 .DS_Store
 
 ### Local Config ###
-src/Util/dbinfo.properties
+src/Util/dbinfo_mysql.properties
+src/Util/dbinfo_oracle.properties

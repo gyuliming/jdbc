@@ -1,4 +1,4 @@
-package Util;
+package jdbc_boards.Util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,7 +9,7 @@ public class DBUtil {
     private static ResourceBundle bundle;
 
     static {
-        bundle = ResourceBundle.getBundle("util.dbinfo_mysql");
+        bundle = ResourceBundle.getBundle("util.dbinfo");
 
         try {
             Class.forName(bundle.getString("driver"));
@@ -34,10 +34,4 @@ public class DBUtil {
         }
         return null;
     }
-
-//    public static void main(String[] args) {
-//        DBUtil dbUtil = new DBUtil();
-//        Connection conn = dbUtil.getConnection();
-//        System.out.println(conn); //com.mysql.cj.jdbc.ConnectionImpl@5a63f509 -> mysql이 보내줌
-//    }
 }
