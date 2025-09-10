@@ -31,3 +31,4 @@ bin/
 ### Local Config ###
 src/Util/dbinfo_mysql.properties
 src/Util/dbinfo_oracle.properties
+src/jdbc_boards/Util/dbinfo.properties
