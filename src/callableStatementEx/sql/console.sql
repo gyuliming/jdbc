@@ -47,8 +47,6 @@ SHOW CREATE PROCEDURE SP_MEMBER_INSERT;
 
 -- SP_MEMBER_LIST() 프로시저를 생성   :  전체 회원들의 정보를 출력하는 기능입니다.
 -- MemberList 클래스에서 callableStatement 방식으로 회원들의 리스트를 출력하는 기능 구현하세요
-use bookmarketdb;
-
 -- 회원전체리스트 확인
 drop procedure if exists SP_MEMBER_LIST;
 delimiter $$
@@ -74,12 +72,12 @@ call SP_MEMBER_LIST_ONE('user');
 -- 회원 수정 ( 비밀번호)를 수정할지  이메일을 수정할지  연락처를 수정할지를 선택해서 다중분기로 처리하기
 drop procedure if exists SP_MEMBER_UPDATE;
 delimiter $$
-create procedure SP_MEMBER_UPDATE(IN userid VARCHAR(20), IN str1 VARCHAR(20), IN str2 VARCHAR(20))
+create procedure SP_MEMBER_UPDATE(IN userid VARCHAR(20), IN num int)
 begin
 case
-        when str1 = 'm_pwd' then set @sqlQuery = concat('update tb_member set ', str1, ' = ', str2 , 'where m_userid = ', userid);
-when str1 = 'm_email' then set @sqlQuery = 'm_email';
-when str1 = 'm_hp' then set @sqlQuery = 'm_hp';
+    when str1 = 'm_pwd' then set @sqlQuery = concat('update tb_member set ', str1, ' = ', str2 , 'where m_userid = ', userid);
+    when str1 = 'm_email' then set @sqlQuery = 'm_email';
+    when str1 = 'm_hp' then set @sqlQuery = 'm_hp';
 else rollback;
 end case;
 

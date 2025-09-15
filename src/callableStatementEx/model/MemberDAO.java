@@ -3,10 +3,7 @@ package callableStatementEx.model;
 import Util.DBUtil;
 import callableStatementEx.vo.Member;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +12,7 @@ public class MemberDAO {
     private Connection conn;
     List<Member> memberList = new ArrayList<>();
 
-    public void MemberInsert() {
+    public boolean MemberInsert(Member member) {
         conn = DBUtil.getConnection();
         String sql = "{CALL SP_MEMBER_INSERT(?, ?, ?, ?, ?)}"; // IN 4개, OUT 1개 => ? 플레이스 홀더 5개
 
@@ -23,16 +20,17 @@ public class MemberDAO {
             conn.setAutoCommit(false);
 
             // IN 파라미터 세팅
-            call.setString(1, m_userid);
-            call.setString(2, m_pwd);
-            call.setString(3, m_email);
-            call.setString(4, m_hp);
+            call.setString(1, member.getM_userid());
+            call.setString(2, member.getM_pwd());
+            call.setString(3, member.getM_email());
+            call.setString(4, member.getM_hp());
 
             // OUT 파라미터 세팅
             call.registerOutParameter(5, java.sql.Types.INTEGER);
 
             //실행
-            call.execute();
+            boolean result = call.execute();
+            if (result > 0) return true;
 
             int rtn = call.getInt(5);
             if (rtn == 100) {
@@ -79,7 +77,7 @@ public class MemberDAO {
     }
 
     // 회원 m_userid 로 회원 정보 확인
-    public Member MemberListOne() {
+    public Member MemberListOne(String m_userid) {
         conn = DBUtil.getConnection();
         String sql = "{call SP_MEMBER_LIST_ONE()}";
 
